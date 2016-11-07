@@ -7,6 +7,9 @@
 
 #include "point.hpp"
 
+
+using namespace std;
+
 Point::Point(){
 	x = 0;
 	y = 0;
@@ -14,7 +17,7 @@ Point::Point(){
 }
 
 Point::Point(double x_in, double y_in)
-: x(x_in), y(y_in), distance(sqrt(x^2 + y^2)) {
+: x(x_in), y(y_in), distance(sqrt(x*x + y*y)) {
 	//Mareks Initialization List
 }
 
@@ -27,12 +30,14 @@ double Point::get_y(){
 void Point::set(double x_in, double y_in){
 	x = x_in;
 	y = y_in;
-	distance = sqrt(x^2 + y^2);
+	distance = sqrt((x*x) + (y*y));
 }
-std::string Point::getPoint(){
+string Point::getPoint(){
 	int x = get_x();
 	int y = get_y();
-	return ("("+x + "," + y +")");
+	stringstream bob;
+	bob << "(" << x << "," << y << ")";
+	return bob.str();
 }
 double Point::get_distance(){
 	return distance;
@@ -42,11 +47,12 @@ double Point::distanceBetweenPoints(Point p2){
 			y1 = get_y(),
 			x2 = p2.get_x(),
 			y2 = p2.get_y();
-	return sqrt((x1-x2)^2 + (y1-y2)^2);
+	return sqrt(((x1-x2)^2) + ((y1-y2)^2));
 }
 
-void Point::origin_symmetric(){
-	set(-get_x(), -get_y());
+Point Point::origin_symmetric(Point p1){
+	p1.set(-p1.get_x(), -p1.get_y());
+	return p1;
 }
 
 void Point::translate(Point p2){

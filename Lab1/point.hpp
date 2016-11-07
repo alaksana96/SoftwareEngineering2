@@ -5,8 +5,9 @@
  *      Author: apl115
  */
 
-#include <cmath>
-#include <string>
+#include <math.h>
+#include <sstream>
+#include <iostream>
 
 class Point{
 public:
@@ -18,8 +19,8 @@ public:
 	std::string getPoint();
 	double get_distance();
 	double distanceBetweenPoints(Point p2);
-	void origin_symmetric();
-	void translate(Point P2);
+	Point origin_symmetric(Point p1);
+	void translate(Point p2);
 private:
 	double x;
 	double y;

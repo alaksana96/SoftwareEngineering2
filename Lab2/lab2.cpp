@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int farthestPoint(vector<Point>& points);
+int closestPoint(vector<Point>& points);
 int numberOfDuplicates(Point p, vector<Point>& points);
 
 int main(){
@@ -31,7 +31,7 @@ int main(){
 		cout << vecPoint[i].getPoint() << endl;
 	}
 
-	int index = farthestPoint(vecPoint);
+	int index = closestPoint(vecPoint);
 	cout << "the index is: " << index << "\nthe point is: " << vecPoint[index].getPoint() << endl;
 
 	int dup = numberOfDuplicates(vecPoint[index], vecPoint);
@@ -52,13 +52,13 @@ int numberOfDuplicates(Point p, vector<Point>& points){
 	return n;
 }
 
-int farthestPoint(vector<Point>& points)
+int closestPoint(vector<Point>& points)
 {
-	Point furthest(0,0); //initialized to the origin
+	Point furthest = points[0]; //initialized to first point in the vector
 	int index = 0;
-	for(int i = 0; i < points.size(); i++)
+	for(int i = 1; i < points.size(); i++)
 	{
-		if(furthest < points[i])
+		if(!(furthest < points[i]))
 		{
 			furthest = points[i];
 			index = i;

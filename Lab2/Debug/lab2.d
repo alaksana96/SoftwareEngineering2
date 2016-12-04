@@ -1,3 +1,3 @@
-lab2.d: ../lab2.cpp ../point.hpp
+lab2.o: ../lab2.cpp ../point.hpp
 
 ../point.hpp:

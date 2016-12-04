@@ -1,3 +1,3 @@
-point.d: ../point.cpp ../point.hpp
+point.o: ../point.cpp ../point.hpp
 
 ../point.hpp:

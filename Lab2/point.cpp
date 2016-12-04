@@ -1,67 +1,81 @@
+/*
+ * point.cpp
+ *
+ *  Created on: 4 Dec 2016
+ *      Author: alaksana
+ */
+
 #include "point.hpp"
 
-using namespace std;
-
-/*Point::Point(){
+Point::Point(){
 	x = 0;
 	y = 0;
-	distance = 0;
-}
-*/
-Point::Point(double x_in, double y_in) 
-: x(x_in), y(y_in) {
-
 }
 
-double Point::get_x() const{
-	return x;
-}
-
-double Point::get_y() const{
-	return y;
-}
-
-double Point::get_distance() const{
-	return sqrt(x*x + y*y);
-}
-
-void Point::set(double x_in, double y_in) {
+Point::Point(double x_in, double y_in){
 	x = x_in;
 	y = y_in;
 }
 
-string Point::getPoint() {
+double Point::get_x(){
+	return x;
+}
+
+double Point::get_y(){
+	return y;
+}
+
+void Point::set_x(double x_in){
+	x = x_in;
+}
+
+void Point::set_y(double y_in){
+	y = y_in;
+}
+
+double Point::distance() const{
+	return (sqrt(x*x + y*y));
+
+}
+
+double Point::distance(const Point& p) const{
+	return sqrt(((x - p.x)*(x - p.x)) + ((y - p.y)*(y - p.y)));
+}
+
+void Point::translate(const Point& p){
+	x = x + p.x;
+	y = y + p.y;
+}
+
+Point Point::origin_symmetric(const Point& p) const{
+	Point tmp;
+	tmp.x = -p.x;
+	tmp.y = -p.y;
+	return tmp;
+}
+
+void Point::origin_symmetric(){
+	x = -x;
+	y = -y;
+}
+
+std::string Point::getPoint(){
 	double x = get_x();
 	double y = get_y();
-	stringstream prnt;
+	std::stringstream prnt;
 	prnt << "(" << x << "," << y << ")";
 	return prnt.str();
 }
 
-Point Point::origin_symmetric(const Point& p) const{
-	Point tmp(-p.x, -p.y);
-	return tmp;
+bool Point::operator <(const Point& p1){
+	if(distance() < p1.distance()){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
-double Point::distanceBetweenPoints(Point p1) {
-	double x1 = get_x(),
-		y1 = get_y(),
-		x2 = p1.get_x(),
-		y2 = p1.get_y();
-	return sqrt(((x1 - x2)*(x1 - x2)) + ((y1 - y2)*(y1 - y2)));
-}
-
-void Point::translate(Point p1) {
-	set(get_x() + p1.get_x(), get_y() + p1.get_y());
-}
-
-bool Point::operator<(const Point& p1){
-	double a = get_distance();
-	double b = p1.get_distance();
-	return a < b;
-}
-
-bool operator==(const Point& p1, const Point& p2)
-{
-	return((p1.x == p2.x) && (p1.y == p2.y));
+bool operator==(const Point& p1, const Point& p2){
+	return (p1.x == p2.x) && (p1.y == p2.y);
 }

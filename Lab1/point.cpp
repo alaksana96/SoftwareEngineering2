@@ -1,57 +1,68 @@
-#include "point.hpp"
+/*
+ * point.cpp
+ *
+ *  Created on: 4 Dec 2016
+ *      Author: alaksana
+ */
 
-using namespace std;
+#include "point.hpp"
 
 Point::Point(){
 	x = 0;
 	y = 0;
-	distance = 0;
 }
 
-Point::Point(double x_in, double y_in) 
-: x(x_in), y(y_in), distance(sqrt(x*x + y*y)) {
-
+Point::Point(double x_in, double y_in){
+	x = x_in;
+	y = y_in;
 }
 
-double Point::get_x() {
+double Point::get_x(){
 	return x;
 }
 
-double Point::get_y() {
+double Point::get_y(){
 	return y;
 }
 
-double Point::get_distance() {
-	return distance;
-}
-
-void Point::set(double x_in, double y_in) {
+void Point::set_x(double x_in){
 	x = x_in;
-	y = y_in;
-	distance = sqrt(x*x + y*y);
 }
 
-string Point::getPoint() {
+void Point::set_y(double y_in){
+	y = y_in;
+}
+
+double Point::distance(){
+	return (sqrt(x*x + y*y));
+
+}
+
+double Point::distance(const Point& p){
+	return sqrt(((x - p.x)*(x - p.x)) + ((y - p.y)*(y - p.y)));
+}
+
+void Point::translate(const Point& p){
+	x = x + p.x;
+	y = y + p.y;
+}
+
+Point Point::origin_symmetric(const Point& p) const{
+	Point tmp;
+	tmp.x = -p.x;
+	tmp.y = -p.y;
+	return tmp;
+}
+
+void Point::origin_symmetric(){
+	x = -x;
+	y = -y;
+}
+
+std::string Point::getPoint(){
 	double x = get_x();
 	double y = get_y();
-	stringstream prnt;
+	std::stringstream prnt;
 	prnt << "(" << x << "," << y << ")";
 	return prnt.str();
-}
-
-Point Point::origin_symmetric(Point p1) {
-	p1.set(-p1.get_x(), -p1.get_y());
-	return p1;
-}
-
-double Point::distanceBetweenPoints(Point p1) {
-	double x1 = get_x(),
-		y1 = get_y(),
-		x2 = p1.get_x(),
-		y2 = p1.get_y();
-	return sqrt(((x1 - x2)*(x1 - x2)) + ((y1 - y2)*(y1 - y2)));
-}
-
-void Point::translate(Point p1) {
-	set(get_x() + p1.get_x(), get_y() + p1.get_y());
 }

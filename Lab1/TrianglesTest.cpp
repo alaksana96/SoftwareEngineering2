@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include "Triangle.hpp"
+#include "triangle.hpp"
 
 using namespace std;
 
@@ -28,10 +28,10 @@ int main(){
 	cin >> yin;
 	Point pTranslate(xin, yin);
 
-	cout << myTriangle.get_p1().getPoint() << " " << myTriangle.get_p2().getPoint() << " " << myTriangle.get_p3().getPoint() << endl;
+	cout << myTriangle.get_a().getPoint() << " " << myTriangle.get_b().getPoint() << " " << myTriangle.get_c().getPoint() << endl;
 	cout << "Translate by: " << pTranslate.getPoint() << endl;
 	myTriangle.translate(pTranslate);
-	cout << myTriangle.get_p1().getPoint() << " " << myTriangle.get_p2().getPoint() << " " << myTriangle.get_p3().getPoint() << endl;
+	cout << myTriangle.get_a().getPoint() << " " << myTriangle.get_b().getPoint() << " " << myTriangle.get_c().getPoint() << endl;
 
 	return 0;
 }

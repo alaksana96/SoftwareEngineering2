@@ -16,15 +16,16 @@
 using namespace std;
 
 int farthestPoint(vector<Point>& points);
-/*
+
 int main(){
 	vector<Point> vecPoint;
 	double xin, yin;
+	cout << "Enter Points, 0,0 to end" << endl;
 	cout << "Enter x: " << endl;
 	cin >> xin;
 	cout << "Enter y: " << endl;
 	cin >> yin;
-	while(xin != 0 && yin != 0){
+	while(!((xin == 0) && (yin == 0))){
 		Point vp(xin, yin);
 		vecPoint.push_back(vp);
 		cout << "Enter x: " << endl;
@@ -42,14 +43,14 @@ int main(){
 
 	return 0;
 }
-*/
+
 int farthestPoint(vector<Point>& points){
 	Point furthest; //initialized to the origin
 	int index = 0;
 	for(int i = 0; i < points.size(); i++){
-		double distance = furthest.get_distance();
+		double distance = furthest.distance();
 		Point p = points[i];
-		if(p.get_distance() > distance){
+		if(p.distance() > distance){
 			furthest = p;
 			index = i;
 		}

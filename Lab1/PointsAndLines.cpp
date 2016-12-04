@@ -14,7 +14,7 @@
 #include "point.hpp"
 
 using namespace std;
-/*
+
 int main(){
 	vector<double> vec;
 	double val;
@@ -35,9 +35,9 @@ int main(){
 
 	for(int i = 0; i <vec.size(); i++){
 		Point line(0, vec[i]);
-		cout << "distance: " << line.distanceBetweenPoints(p) << endl;
+		cout << "distance: " << line.distance(p) << endl;
 	}
 
 	return 0;
 }
-*/
+
